@@ -10,13 +10,20 @@ pipeline {
 
         stage('Install') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '''
+                python3 -m venv .venv
+                . .venv/bin/activate
+                .venv/bin/pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                sh 'pytest tests'
+                sh '''
+                . .venv/bin/activate
+                PYTHONPATH=. .venv/bin/pytest tests
+                '''
             }
         }
     }
