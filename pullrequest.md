@@ -1,1 +1,1 @@
-Este arquivo explica o que é um Pull Request.
+This file explains what a Pull Request is.
