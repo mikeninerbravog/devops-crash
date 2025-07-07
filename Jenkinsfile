@@ -4,23 +4,29 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo '📥 Cloning source code...'
                 checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Install') {
             steps {
-                echo '🔨 Building project...'
-                sh 'echo Simulating build && sleep 2'
+                sh 'pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                echo '🧪 Running tests...'
-                sh 'echo Simulating tests... All passed! ✅'
+                sh 'pytest tests'
             }
+        }
+    }
+
+    post {
+        failure {
+            echo '❌ Tests failed.'
+        }
+        success {
+            echo '✅ All tests passed.'
         }
     }
 }
