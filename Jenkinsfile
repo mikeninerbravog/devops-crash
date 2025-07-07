@@ -4,36 +4,35 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                echo '📥 Cloning project...'
                 checkout scm
             }
         }
 
-        stage('Install') {
+        stage('Build') {
             steps {
-                sh '''
-                python3 -m venv .venv
-                . .venv/bin/activate
-                .venv/bin/pip install -r requirements.txt
-                '''
+                echo '🔧 Installing dependencies...'
+                sh 'pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                sh '''
-                . .venv/bin/activate
-                PYTHONPATH=. .venv/bin/pytest tests
-                '''
+                echo '🧪 Running tests with pytest...'
+                sh 'pytest tests'
             }
         }
     }
 
     post {
-        failure {
-            echo '❌ Tests failed.'
+        always {
+            echo '📦 Pipeline finished (build + test)'
         }
         success {
-            echo '✅ All tests passed.'
+            echo '✅ All tests passed!'
+        }
+        failure {
+            echo '❌ Build or tests failed!'
         }
     }
 }
