@@ -9,19 +9,29 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                echo '🔧 Installing dependencies...'
-                sh 'pip install -r requirements.txt'
-            }
-        }
+stage('Build') {
+    steps {
+        echo '🔧 Setting up Python virtual environment...'
+        sh '''
+            python3 -m venv .venv
+            . .venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+        '''
+    }
+}
 
-        stage('Test') {
-            steps {
-                echo '🧪 Running tests with pytest...'
-                sh 'pytest tests'
-            }
-        }
+
+stage('Test') {
+    steps {
+        echo '🧪 Running tests with pytest...'
+        sh '''
+            . .venv/bin/activate
+            pytest tests
+        '''
+    }
+}
+
     }
 
     post {
