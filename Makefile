@@ -1,4 +1,3 @@
-test-pocs:
-	@echo "Running Python PoC:" && python3 python/check_disk.py
-	@echo "Running Go PoC:" && go run go/http_ping.go
-	@echo "Running JS PoC:" && node js/env_reader.js
+test-linux:
+	@chmod +x linux/*.sh
+	@for f in linux/*.sh; do echo "🔧 Running $$f"; bash $$f; echo "--------------------"; done
