@@ -117,9 +117,6 @@ Make sure you have installed:
 ## 🧑‍💻 Author
 
 Made with ♥️ by [mikeninerbravog](https://github.com/mikeninerbravog)
-
-```
-
 ---
 
 
