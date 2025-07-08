@@ -1,1 +1,1 @@
-Este arquivo ensina como usar branches no Git.
+This file teaches you how to use branches in Git.
