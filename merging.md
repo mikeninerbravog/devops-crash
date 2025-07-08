@@ -1,1 +1,1 @@
-Como fazer merge no Git
+How to merge in Git
