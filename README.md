@@ -169,7 +169,3 @@ You should have the following installed:
 ## 🧑‍💻 Author
 
 Made with ♥️ by [mikeninerbravog](https://github.com/mikeninerbravog)
-
-```
-
----
